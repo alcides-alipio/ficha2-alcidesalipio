@@ -1,0 +1,19 @@
+{
+  "name": "ficha2",
+  "version": "1.0.0",
+  "description": "**Redes de Comunicação · Módulo 5**",
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch src/server.js",
+    "dev-express": "node --watch src/server-express.js",
+    "start": "node src/server.js",
+    "start-express": "node src/server-express.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
