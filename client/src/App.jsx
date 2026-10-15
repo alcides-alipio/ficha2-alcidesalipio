@@ -28,31 +28,62 @@ const cards = [
 ]
 
 function App() {
-  const [filter, setFilter] = useState(null)
+  const [filter, setFilter] = useState({
+    name: null,
+    type: null
+  })
 
   return (
     <main>
       <h1>A minha coleção</h1>
       <h3>Existem {cards.length} cartas</h3>
 
-      <button onClick={() => { setFilter(CardTypes.CREATURE) }}>
+      <button onClick={() => {
+        setFilter({
+          ...filter,
+          type: CardTypes.CREATURE
+        })
+      }}>
         Mostrar somente Criaturas
       </button>
 
-      <button onClick={() => { setFilter(CardTypes.SPELL) }}>
+      <button onClick={() => {
+        setFilter({
+          ...filter,
+          type: CardTypes.SPELL
+        })
+      }}>
         Mostrar somente Feitiços
       </button>
 
-      <button onClick={() => { setFilter(null) }}>
+      <button onClick={() => {
+        setFilter({
+          ...filter,
+          type: null
+        })
+      }}>
         Mostrar todos
       </button>
 
+      <input type="string" onChange={(e) => {
+        setFilter({
+          ...filter,
+          name: e.target.value || null
+        })
+      }} />
+
       {
         cards.filter((value) => {
-          if (filter === null)
-            return true
+          if (filter.type !== null && filter.type !== value.type)
+            return false
 
-          return value.type === filter
+          if (filter.name !== null &&
+            !value.name.toLowerCase()
+              .includes(filter.name.toLowerCase()))
+            return false
+
+          return true
+
         }).map((value, index) => {
           return Card(value, index)
         })
