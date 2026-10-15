@@ -10,7 +10,18 @@
 //
 // Tarefa 1: substitui este array vazio pelo array cards do teu server
 // (o que fizeste na aula 2).
-const cards = [];
+const CardTypes = {
+  CREATURE: "Criatura",
+  SPELL: "Feitiço"
+}
+
+const cards = [
+    { name: "Dragão de Cobalto", type: CardTypes.CREATURE, attack: 7, defense: 5 },
+    { name: "Guardiã das Marés", type: CardTypes.CREATURE, attack: 4, defense: 8 },
+    { name: "Guardiã das Montanhas", type: CardTypes.SPELL, attack: 4, defense: 7 },
+    { name: "Lagarto de Lava", type: CardTypes.SPELL, attack: 6, defense: 3 },
+    { name: "Guaxinin de Pedra", type: CardTypes.CREATURE, attack: 2, defense: 10 }
+]
 
 function App() {
   return (
