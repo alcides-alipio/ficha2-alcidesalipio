@@ -30,6 +30,7 @@ function App() {
   return (
     <main>
       <h1>A minha coleção</h1>
+      <h3>Existem {cards.length} cartas</h3>
 
       {/* {
         cards.map((value, index) => (
