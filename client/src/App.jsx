@@ -10,6 +10,7 @@
 //
 // Tarefa 1: substitui este array vazio pelo array cards do teu server
 
+import { useState } from "react";
 import Card from "./Card";
 
 // (o que fizeste na aula 2).
@@ -27,19 +28,32 @@ const cards = [
 ]
 
 function App() {
+  const [filter, setFilter] = useState(null)
+
   return (
     <main>
       <h1>A minha coleção</h1>
       <h3>Existem {cards.length} cartas</h3>
 
-      {/* {
-        cards.map((value, index) => (
-          <Card key={index} {...value} />
-        ))
-      } */}
+      <button onClick={() => { setFilter(CardTypes.CREATURE) }}>
+        Mostrar somente Criaturas
+      </button>
+
+      <button onClick={() => { setFilter(CardTypes.SPELL) }}>
+        Mostrar somente Feitiços
+      </button>
+
+      <button onClick={() => { setFilter(null) }}>
+        Mostrar todos
+      </button>
 
       {
-        cards.map((value, index) => {
+        cards.filter((value) => {
+          if (filter === null)
+            return true
+
+          return value.type === filter
+        }).map((value, index) => {
           return Card(value, index)
         })
       }

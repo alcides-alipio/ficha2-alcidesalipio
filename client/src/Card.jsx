@@ -17,8 +17,8 @@ function Card({ name, type, attack, defense }, key) {
     </p>
 
     if (attack >= 6)
-        return <strong>{jsx}</strong>
-        
+        return <strong key={key}>{jsx}</strong>
+
     return jsx
 }
 
