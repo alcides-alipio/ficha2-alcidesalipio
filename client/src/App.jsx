@@ -30,7 +30,8 @@ const cards = [
 function App() {
   const [filter, setFilter] = useState({
     name: null,
-    type: null
+    type: null,
+    index: null
   })
 
   return (
@@ -59,7 +60,17 @@ function App() {
       <button onClick={() => {
         setFilter({
           ...filter,
-          type: null
+          index: Math.floor(Math.random() * cards.length)
+        })
+      }}>
+        Mostrar carta aleatoria
+      </button>
+
+      <button onClick={() => {
+        setFilter({
+          ...filter,
+          type: null,
+          index: null
         })
       }}>
         Mostrar todos
@@ -73,7 +84,12 @@ function App() {
       }} />
 
       {
-        cards.filter((value) => {
+        cards.filter((value, index) => {
+          if (filter.index !== null && filter.index === index)
+            return true
+          else if (filter.index !== null)
+            return false
+
           if (filter.type !== null && filter.type !== value.type)
             return false
 
