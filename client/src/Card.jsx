@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 /**
  * 
  * @param {Object} props 
@@ -9,17 +11,29 @@
  * @returns {React.JSX.Element}
  */
 function Card({ name, type, attack, defense }, key) {
-    let jsx = <p key={key}>
+    const [number, setNumber] = useState(0)
+
+    let text = <p>
         Nome: {name} |
         Tipo: {type} |
         Ataque: {attack} |
         Defesa: {defense}
     </p>
 
-    if (attack >= 6)
-        return <strong key={key}>{jsx}</strong>
+    let jsx = (
+        <div key={key}>
+            {attack >= 6
+                ? <strong>{text}</strong>
+                : text}
 
-    return jsx
+            <button onClick={() => {
+                setNumber(number + 1)
+            }}>
+                ♥ {number}
+            </button>
+        </div>
+    );
+
+    return jsx;
 }
-
 export default Card

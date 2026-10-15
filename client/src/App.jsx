@@ -31,7 +31,8 @@ function App() {
   const [filter, setFilter] = useState({
     name: null,
     type: null,
-    index: null
+    index: null,
+    sortByAttack: false
   })
 
   return (
@@ -69,8 +70,18 @@ function App() {
       <button onClick={() => {
         setFilter({
           ...filter,
+          sortByAttack: true
+        })
+      }}>
+        Listar por ataque
+      </button>
+
+      <button onClick={() => {
+        setFilter({
+          ...filter,
           type: null,
-          index: null
+          index: null,
+          sortByAttack: false
         })
       }}>
         Mostrar todos
@@ -99,7 +110,11 @@ function App() {
             return false
 
           return true
+        }).sort((a, b) => {
+          if (filter.sortByAttack)
+            return b.attack - a.attack
 
+          return 0
         }).map((value, index) => {
           return Card(value, index)
         })
